@@ -15,6 +15,8 @@
     This code is provided as-is, without any express or implied warranties.
 **************************************************************************************/
 
+// <<<< !!!!!! THIS WAS BEFORE ZERO CROSS INTEGRATED ON BOARD DESIGN !!!!!! >>>>
+
 /*
     HEARTBEAT signal is on PB1 at 100 ms (down for 500 Us, then up).
 
@@ -111,7 +113,7 @@ uint16_t readHoldingRegister (uint8_t reg_index) {
 
 /*
 CRC Generation from the MODBUS Specification V1.02:
-1. Load a 16bit register with FFFF hex (all 1’s). Call this the CRC register.
+1. Load a 16bit register with FFFF hex (all 1â€™s). Call this the CRC register.
 2. Exclusive OR the first 8bit byte of the message with the low order byte of the 16 bit CRC register, putting the result in the
 CRC register.
 3. Shift the CRC register one bit to the right (toward the LSB), zero filling the MSB.
@@ -418,7 +420,7 @@ int main(void) {
     *   Config IWDG watch dog
     *************************************************************/
     // The dedicated separate clock of the IWDG hardware comes from Low Speed Internal (LSI) clock.
-    // The LSI is not accurate due to the fact that it is a RC oscillator. It has an oscillation frequency of somewhere between 30 – 60 kHz.
+    // The LSI is not accurate due to the fact that it is a RC oscillator. It has an oscillation frequency of somewhere between 30 â€“ 60 kHz.
     // For most applications it is assumed to have a mean frequency of 45 kHz though it is supposed to be around 32 kHz.
     // Prescaler value can be all powers of two ranging from pow(2, 2) up to pow(2, 8)
     // Reload specifies the timer period, that is the auto-reload value when the timer is refreshed. It can range from 0x0 up to 0xFFF
