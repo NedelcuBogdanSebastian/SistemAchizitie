@@ -1,0 +1,35 @@
+  I = ADC * 0.26881720430107526881720430107527
+  I = (adc_value * (3.3 / 1023.0)) / 120.0
+  // make number represent on 8 bits => 00..FF (0mA..25.5mA <=> 00..FF)  (value is *10 !!!)  
+  if (I > 25.5mA) I = 25.5mA
+  
+===========================================================================
+
+Conversia ADC - TENSIUNE in cadrul integratului, se face cu formula:
+
+U = ADC * (3.3 V/ 1023.0 PUNCTE) V = ADC * 0.0032258 V
+
+=>   ADC = U / 0.0032258 V
+  
+===========================================================================
+
+Formula de conversie folosita in modulul de 4-20mA este:
+  
+MIN : I = (0 ADC * (3.3 / 1023.0)V) / 120.0 OHM = (0 ADC * 0.0032258 V ) / 120 OHM = 0 AMPERI
+MAX : I = (1023 ADC * (3.3 / 1023.0)V) / 120.0 OHM = (1023 ADC * 0.0032258 V ) / 120 OHM = 3.2999934 V / 120 OHM = 0.027499945 AMPERI = 27.49 mA
+                                                                                           -----------
+Noi injectam 3V in potentiometrul de 1.5 KOHM => valorile tensiunii pot fi intre 0 V si 3V.
+
+Astfel cum am dezlipit rezistenta de 120 OHM de la intrarile modulului de 4-20mA, unde sunt conectate potentiometrele,
+o sa vedem tensiunea intre 0 V si 3V. 
+
+Valorile pe care le calculeaza modulul de 4-20mA sunt:
+    - (MIN) la 0V pe intrare => 0 mA IN RMMS
+    - (MAX) la 3V pe intrare => 
+            ADC = 3 V * 0.0032258 V = 930 =>
+            I = (930 ADC * 0.0032258 V) / 120 OHM = 0.02499995 AMPERI = 24.99 mA
+            
+            Modulul are conditia:
+                if (I > 25.5mA) I = 25.5mA
+            astfel cei 25mA sunt afisati in RMMS => valorile potentiometrului sunt 0% = 0mA si 100% = 25mA         
+            
