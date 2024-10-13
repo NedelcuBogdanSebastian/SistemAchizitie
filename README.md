@@ -1,0 +1,1 @@
+![display](Images/SistemAchizitie.png)
